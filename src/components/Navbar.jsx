@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { FaLocationDot } from 'react-icons/fa6';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { FaCaretDown } from 'react-icons/fa';
+import { MdOutlineCancel } from 'react-icons/md';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import axios from 'axios';
 
@@ -18,6 +19,7 @@ const Navbar = () => {
       try {
         const allLocation = await axios.get(url);
         setLocation(allLocation.data);
+        setHandleLocation(false);
 
       } catch (error) {
         console.log(error);
@@ -29,44 +31,55 @@ const Navbar = () => {
     getLocation();
   }, [])
 
+  const [handleLocation, setHandleLocation] = useState(false);
+
   return (
-    <div className='flex justify-between py-3 items-center'>
-      <div className='flex items-center justify-center gap-10'>
-        <div>
-          <Link to='/' className='font-bold'>
-            <span className='text-3xl text-red-600'>P</span>
-            <span className='text-2xl text-black'>rime Shop</span>
-          </Link>
-        </div>
-        <div className='flex items-center gap-2'>
+    <div className='fixed w-full dark:bg-gray-700 dark:text-white'>
+      <div className='container mx-auto flex justify-between py-3 items-center'>
+        <div className='flex items-center justify-center gap-10'>
           <div>
-            <FaLocationDot className='text-red-600 text-xl' />
+            <Link to='/' className='font-bold'>
+              <span className='text-3xl text-red-600'>P</span>
+              <span className='text-2xl'>rime Shop</span>
+            </Link>
           </div>
-          <div className='flex items-center gap-1.5'>
-            {location ? <div>
-              <p>{location.locality}</p>
-              <p>{location.city}</p>
-            </div> : <div>Add Address</div>
-            }
-            <FaCaretDown className='cursor-pointer' onClick={handleLocation} />
+          <div className='flex items-center gap-2'>
+            <div>
+              <FaLocationDot className='text-red-600 text-xl' />
+            </div>
+            <div className='flex items-center gap-1.5'>
+              {location ? <div>
+                <p>{location.locality}</p>
+                <p>{location.city}</p>
+              </div> : <div>Add Address</div>
+              }
+              <FaCaretDown className='cursor-pointer' onClick={() => setHandleLocation(!handleLocation)} />
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <ul className='flex gap-8 text-lg [&>*]:font-semibold'>
-          <li><NavLink to='/' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Home</NavLink></li>
-          <li><NavLink to='/product' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Product</NavLink></li>
-          <li><NavLink to='/about' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>About</NavLink></li>
-          <li><NavLink to='/contact' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Contact</NavLink></li>
-          <li><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}><AiOutlineShoppingCart className='text-3xl' /></NavLink></li>
-          <li className='[&>*]:cursor-pointer'>
-            <SignedOut>
-              <SignInButton className='bg-red-500 p-1 rounded-md text-white' />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn></li>
-        </ul>
+        <div className={`${handleLocation ? '' : 'hidden'} z-50 fixed h-30 w-70 top-15 left-70 bg-white rounded-xl shadow-2xl`}>
+          <MdOutlineCancel className='absolute top-2 right-2 text-xl cursor-pointer' onClick={()=>setHandleLocation(!handleLocation)} />
+          <div className='flex flex-col h-full items-center justify-center text-xl gap-1.5'>
+            <p>Change Location</p>
+            <button onClick={getLocation} className='bg-red-600 text-white rounded-xl py-1 px-1.5 cursor-pointer'>Detect My Location</button>
+          </div>
+        </div>
+        <div>
+          <ul className='flex gap-8 text-lg [&>*]:font-semibold'>
+            <li><NavLink to='/' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Home</NavLink></li>
+            <li><NavLink to='/product' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Product</NavLink></li>
+            <li><NavLink to='/about' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>About</NavLink></li>
+            <li><NavLink to='/contact' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Contact</NavLink></li>
+            <li><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}><AiOutlineShoppingCart className='text-3xl' /></NavLink></li>
+            <li className='[&>*]:cursor-pointer'>
+              <SignedOut>
+                <SignInButton className='bg-red-500 p-1 rounded-md text-white' />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn></li>
+          </ul>
+        </div>
       </div>
     </div>
   )
