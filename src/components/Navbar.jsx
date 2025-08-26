@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaLocationDot } from 'react-icons/fa6';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 
 
 
@@ -29,11 +30,18 @@ const Navbar = () => {
       </div>
       <div>
         <ul className='flex gap-8 text-lg [&>*]:font-semibold'>
-          <li><NavLink to='/' className={({isActive})=>isActive?'border-b-3 border-red-700': 'transform transition-all duration-300 hover:text-xl'}>Home</NavLink></li>
-          <li><NavLink to='/product' className={({isActive})=>isActive?'border-b-3 border-red-700': 'transform transition-all duration-300 hover:text-xl'}>Product</NavLink></li>
-          <li><NavLink to='/about' className={({isActive})=>isActive?'border-b-3 border-red-700': 'transform transition-all duration-300 hover:text-xl'}>About</NavLink></li>
-          <li><NavLink to='/contact' className={({isActive})=>isActive?'border-b-3 border-red-700': 'transform transition-all duration-300 hover:text-xl'}>Contact</NavLink></li>
-          <li><NavLink to='/cart' className={({isActive})=>isActive?'border-b-3 border-red-700': 'transform transition-all duration-300 hover:text-xl'}><AiOutlineShoppingCart className='text-3xl'/></NavLink></li>
+          <li><NavLink to='/' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Home</NavLink></li>
+          <li><NavLink to='/product' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Product</NavLink></li>
+          <li><NavLink to='/about' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>About</NavLink></li>
+          <li><NavLink to='/contact' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Contact</NavLink></li>
+          <li><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}><AiOutlineShoppingCart className='text-3xl' /></NavLink></li>
+          <li className='[&>*]:cursor-pointer'>
+            <SignedOut>
+              <SignInButton className='bg-red-500 p-1 rounded-md text-white' />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn></li>
         </ul>
       </div>
     </div>
