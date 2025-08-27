@@ -80,7 +80,7 @@ const Navbar = () => {
               <li><NavLink to='/about' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>About</NavLink></li>
               <li><NavLink to='/contact' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Contact</NavLink></li>
               <li><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}><AiOutlineShoppingCart className='text-3xl' /></NavLink></li>
-              <li className='text-xl'
+              <li className='text-xl cursor-pointer hover:scale-105'
                 onClick={() => {
                   setMode((mode) => {
                     const newMode = !mode;
