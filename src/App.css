@@ -5,3 +5,5 @@
     height: 30px;
     width: 30px;
 }
+
+@custom-variant dark (&:where(.dark,.dark *));
