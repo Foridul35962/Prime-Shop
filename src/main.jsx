@@ -9,6 +9,8 @@ import Cart from './pages/Cart.jsx'
 import Contact from './pages/Contact.jsx'
 import Error from './pages/Error.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
+import { Provider } from 'react-redux'
+import APIStore from './store/index.js'
 
 
 // Import your Publishable Key
@@ -53,8 +55,10 @@ const router = createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   < StrictMode >
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>    {/* for login */}
-      <RouterProvider router={router} />
-    </ClerkProvider>
+    <Provider store={APIStore}>
+      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>    {/* for login */}
+        <RouterProvider router={router} />
+      </ClerkProvider>
+    </Provider>
   </StrictMode >
 )
