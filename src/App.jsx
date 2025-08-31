@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom'
 
 const App = () => {
   return (
-    <div className='px-5 md:px-0'>
+    <div className='overflow-hidden'>
       <Navbar />
-      <div className='fixed top-18'>
+      <div className='mt-15 md:mt-18'>
       <Outlet />
       </div>
     </div>
