@@ -7,8 +7,7 @@ import Slider from 'react-slick';
 
 const Carousel = () => {
   const dispatch = useDispatch();
-  const { CarouselData, loading } = useSelector((state) => state.CarouselAPI);
-  const data = CarouselData?.products || [];
+  const { data, loading } = useSelector((state) => state.CarouselAPI);
 
   useEffect(() => {
     dispatch(fetchCarouselAPI())
@@ -27,10 +26,10 @@ const Carousel = () => {
   };
 
   return (
-    <div className='w-dvw bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]'>
+    <div className='relative w-dvw bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]'>
       <Slider {...settings}>
         {
-          loading ? <div>Loading...</div> : data?.slice(0, 7)?.map((product, idx) => (
+          loading ? <div className='bg-white text-4xl text-center'>Loading...</div> : data?.slice(0, 7)?.map((product, idx) => (
             <div key={idx} className="!flex justify-center sm:h-dvh">
               <div className="flex flex-col sm:flex-row container mx-auto items-center gap-6 p-4 rounded-lg w-full">
                 <div className="flex flex-col gap-5 w-full sm:w-3/5">

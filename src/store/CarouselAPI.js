@@ -16,6 +16,7 @@ const CarouselAPI = createSlice({
     CarouselData: null,
     loading: false,
     error: null,
+    data:null
   },
   reducers: {}, 
   extraReducers: (builder) => {
@@ -26,6 +27,7 @@ const CarouselAPI = createSlice({
       .addCase(fetchCarouselAPI.fulfilled, (state, action) => {
         state.loading = false;
         state.CarouselData = action.payload;
+        state.data = action.payload?.products || [];
       })
       .addCase(fetchCarouselAPI.rejected, (state, action) => {
         state.loading = false;

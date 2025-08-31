@@ -6,4 +6,14 @@
     width: 30px;
 }
 
+.slick-dots {
+  bottom: 20px !important;
+}
+
+.slick-dots li button:before {
+  color: red !important; /* dot color change */
+  font-size: 12px !important;
+}
+
+
 @custom-variant dark (&:where(.dark,.dark *));
