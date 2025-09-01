@@ -14,7 +14,7 @@ import Menubar from './Menubar';
 
 
 
-const Navbar = () => {
+const Navbar = ({navbarRef}) => {
 
   const [location, setLocation] = useState('');
   const getLocation = async () => {
@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='fixed top-0 w-full left-0 bg-white dark:bg-gray-700 dark:text-white z-10'>
+      <div ref={navbarRef} className='fixed top-0 w-full left-0 bg-white dark:bg-gray-700 dark:text-white z-10'>
         <div className='container mx-auto flex justify-between py-3 px-4 md:px-6 lg:px-0 items-center'>
           <div className='flex items-center justify-center gap-10'>
             <div>
