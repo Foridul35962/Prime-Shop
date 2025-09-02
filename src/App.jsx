@@ -6,22 +6,27 @@ const App = () => {
   //Dynamic Height Detection
   const navbarRef = useRef(null);
   const [height, setHeight] = useState(0);
-  useEffect(()=>{
-    const updateHeight = ()=>{
-      if (navbarRef.current){
+  useEffect(() => {
+    if (!navbarRef.current)
+      return;
+    const observer = new ResizeObserver(() => {
+      if (navbarRef.current) {
         setHeight(navbarRef.current.offsetHeight);
       }
-    }
-    updateHeight();
-    window.addEventListener('resize',updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
-  },[])
+    });
+
+    observer.observe(navbarRef.current);
+    return () => {
+      if (navbarRef.current)
+        observer.unobserve(navbarRef.current)
+    };
+  }, [])
 
   return (
     <div className='overflow-hidden'>
-      <Navbar navbarRef={navbarRef}/>
+      <Navbar navbarRef={navbarRef} />
       <div style={{ marginTop: `${height}px` }}>
-      <Outlet />
+        <Outlet />
       </div>
     </div>
   )
