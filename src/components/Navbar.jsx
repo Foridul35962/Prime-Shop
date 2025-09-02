@@ -66,7 +66,7 @@ const Navbar = ({navbarRef}) => {
               </div>
             </div>
           </div>
-          <div className={`${handleLocation ? '' : 'hidden'} fixed z-50 h-30 w-70 top-15 left-10 md:left-70 bg-white dark:bg-gray-600 rounded-xl shadow-2xl`}>
+          <div className={`${handleLocation ? '' : 'hidden'} fixed z-50 h-30 w-70 top-15 left-10 md:left-70 bg-gray-300 dark:bg-gray-600 rounded-xl shadow-2xl`}>
             <MdOutlineCancel className='absolute top-2 right-2 text-xl cursor-pointer' onClick={() => setHandleLocation(!handleLocation)} />
             <div className='flex flex-col h-full items-center justify-center text-xl gap-1.5'>
               <p>Change Location</p>
