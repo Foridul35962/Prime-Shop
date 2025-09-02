@@ -2,7 +2,7 @@ import banner from '../assets/banner1.jpg'
 
 const MidBanner = () => {
   return (
-    <div className='bg-gray-300 dark:bg-gray-800 md:py-24'>
+    <div className='bg-gray-200 dark:bg-gray-800 md:py-24'>
         <div className='relative max-w-7xl mx-auto md:rounded-2xl pt-28 bg-cover h-[550px] md:h-[600px]' style={{backgroundImage:`url(${banner})`, backgroundPosition:'center', backgroundAttachment:'fixed'}}>
           <div className='absolute inset-0 md:rounded-2xl bg-black/60 flex flex-col text-white items-center text-center justify-center'>
             <h1 className='text-4xl md:text-6xl font-bold mb-4'>Next-Gen Electronics at Your Fingertips</h1>

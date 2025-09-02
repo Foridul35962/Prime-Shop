@@ -28,7 +28,7 @@ const allFeatures = [
 
 const Features = () => {
   return (
-    <div className='bg-gray-300 dark:bg-gray-800 dark:text-white py-10 md:py-0 md:pb-13 md:px-5 lg:px-0'>
+    <div className='bg-gray-200 dark:bg-gray-800 dark:text-white py-10 md:py-0 md:pb-13 md:px-5 lg:px-0'>
         <div className='flex items-center flex-col gap-10 md:flex-row md:justify-evenly w-full'>
         {
             allFeatures.map((feature)=>(
