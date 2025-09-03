@@ -27,41 +27,44 @@ const Carousel = () => {
   };
 
   return (
-    <div className='relative w-dvw bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]'>
-      <Slider {...settings}>
-        {
-          loading ? (
-            <div className='bg-white text-4xl flex items-center justify-center h-screen w-full'>
-              <video muted autoPlay loop src={Loading}></video>
-            </div>
-          ) : data?.slice(0, 7)?.map((product, idx) => (
-            <div key={idx} className="!flex justify-center sm:h-dvh">
-              <div className="flex flex-col sm:flex-row container mx-auto items-center gap-6 p-4 rounded-lg w-full">
-                <div className="flex flex-col gap-5 w-full sm:w-3/5">
-                  <h1 className="text-red-700 text-sm font-bold">
-                    Powering Your World with the Best in Electronics.
-                  </h1>
+    <>
+      {
+        loading ? (
+          <div className='bg-white dark:bg-gray-800 text-4xl flex items-center justify-center h-screen w-full'>
+            <video muted autoPlay loop src={Loading}></video>
+          </div>
+        ) : <div className='relative w-dvw bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]'>
+          <Slider {...settings}>
+            {data?.slice(0, 7)?.map((product, idx) => (
+              <div key={idx} className="!flex justify-center sm:h-dvh">
+                <div className="flex flex-col sm:flex-row container mx-auto items-center gap-6 p-4 rounded-lg w-full">
+                  <div className="flex flex-col gap-5 w-full sm:w-3/5">
+                    <h1 className="text-red-700 text-sm font-bold">
+                      Powering Your World with the Best in Electronics.
+                    </h1>
 
-                  <div className="text-2xl lg:text-5xl text-white font-bold uppercase">
-                    {product.title.length > 50 ? product.title.slice(0, 50) + "..." : product.title}
+                    <div className="text-2xl lg:text-5xl text-white font-bold uppercase">
+                      {product.title.length > 50 ? product.title.slice(0, 50) + "..." : product.title}
+                    </div>
+
+                    <div className="text-gray-300">
+                      {product.description.length > 150 ? product.description.slice(0, 150) + "..." : product.description}
+                    </div>
+                    <button className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
+                      Shop Now
+                    </button>
                   </div>
 
-                  <div className="text-gray-300">
-                    {product.description.length > 150 ? product.description.slice(0, 150) + "..." : product.description}
+                  <div className="w-full sm:w-2/5">
+                    <img className="rounded-full hover:scale-105 transition-all shadow-2xl shadow-red-400" src={product.image} alt="image" />
                   </div>
-                  <button className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
-                    Shop Now
-                  </button>
-                </div>
-
-                <div className="w-full sm:w-2/5">
-                  <img className="rounded-full hover:scale-105 transition-all shadow-2xl shadow-red-400" src={product.image} alt="image" />
                 </div>
               </div>
-            </div>
-          ))}
-      </Slider>
-    </div>
+            ))}
+          </Slider>
+        </div>
+      }
+    </>
   );
 }
 
