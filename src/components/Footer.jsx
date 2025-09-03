@@ -35,7 +35,7 @@ const Footer = () => {
                     <p className='text-xl font-semibold'>Stay in the Loop</p>
                     <p>Subscribe to get special offers, free giveaways, and more</p>
                     <div className='relative w-full'>
-                        <input type="text" className='bg-white w-full py-2 pr-30 pl-2 text-black text-lg rounded-xl'/>
+                        <input type="text" className='bg-white w-full py-2 pr-30 pl-2 text-black text-lg rounded-xl' placeholder='Your Email Address'/>
                         <button className='absolute right-0 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-br-xl rounded-tr-xl py-[12px] px-4 cursor-pointer transition duration-300 w-fit uppercase'>Subscribe</button>
                     </div>
                 </div>
