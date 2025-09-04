@@ -15,5 +15,8 @@
   font-size: 12px !important;
 }
 
+@theme {
+  --breakpoint-xs: 30rem;
+}
 
 @custom-variant dark (&:where(.dark,.dark *));

@@ -4,7 +4,7 @@ import { fetchCarouselAPI } from '../store/CarouselAPI';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
-import Loading from '../assets/Loading.webm'
+import Loading from './Loading';
 
 const Carousel = () => {
   const dispatch = useDispatch();
@@ -30,9 +30,7 @@ const Carousel = () => {
     <>
       {
         loading ? (
-          <div className='bg-white dark:bg-gray-800 text-4xl flex items-center justify-center h-screen w-full'>
-            <video muted autoPlay loop src={Loading}></video>
-          </div>
+          <Loading />
         ) : <div className='relative w-dvw bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e]'>
           <Slider {...settings}>
             {data?.slice(0, 7)?.map((product, idx) => (
