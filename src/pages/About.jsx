@@ -8,9 +8,8 @@ const About = () => {
 
     return (
         <>
-            <div className='bg-gray-200 dark:bg-gray-800 dark:text-white p-7 md:px-30'>
-                <div className='bg-gray-300 dark:bg-gray-900 shadow-2xl shadow-black rounded-xl px-5 py-7
-                 flex flex-col gap-5'>
+            <div className='bg-gray-200 dark:bg-gray-800 dark:text-white p-7 md:px-40'>
+                <div className='bg-gray-300 dark:bg-gray-900 shadow-2xl shadow-black rounded-xl px-5 py-7 flex flex-col gap-5'>
                     <h1 className='text-4xl text-center font-bold'>About Prime Shop</h1>
                     <div>
                         Welcome to <span className='text-red-600'>Prime Shop</span>, your one-stop destination for the latest and greatest in electronics. From cutting-edge gadgets to must-have accessories, we are here to power up your tech life with premium products and unbeatable service.
