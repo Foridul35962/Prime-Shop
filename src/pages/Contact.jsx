@@ -12,10 +12,10 @@ const Contact = () => {
               <h2 className="text-2xl font-semibold">Contact Info</h2>
               <p>Have a question or need support? We're here to help you with your electronics journey.</p>
             </div>
-            <div>
-              <p><span>📍 Address: </span>123 Tech Lane, Dhaka, Bangladesh</p>
-              <p><span>📧 Email: </span>support@prime-shop.com</p>
-              <p><span>📞 Phone: </span>+880 1712 345 6789</p>
+            <div className="flex flex-col gap-1">
+              <p><span className="font-semibold">📍 Address : </span>123 Tech Lane, Dhaka, Bangladesh</p>
+              <p><span className="font-semibold">📧 Email : </span>support@prime-shop.com</p>
+              <p><span className="font-semibold">📞 Phone : </span>+880 1712 345 6789</p>
             </div>
           </div>
           <form onSubmit={formSubmit} className="*:flex *:flex-col *:gap-1.5 flex flex-col gap-5">
