@@ -19,7 +19,7 @@ const Product = () => {
         loading ? (
           <Loading />
         ) :
-          <div className='bg-gray-200 w-full dark:bg-gray-800 dark:text-white flex flex-col md:flex-row p-7 xl:px-30'>
+          <div className='bg-gray-200 w-full dark:bg-gray-800 dark:text-white flex flex-col md:flex-row p-7 xl:px-20 gap-8'>
             <FilterMenu />
             <ProductItem />
           </div>
