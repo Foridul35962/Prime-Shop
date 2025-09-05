@@ -40,13 +40,13 @@ const FilterMenu = () => {
       </div>
       {showFilter &&
         <div className='flex flex-col gap-3'>
-          <input type="text" placeholder='Search...' className='w-full bg-white p-2 text-xl rounded-xl' />
+          <input type="text" placeholder='Search...' className='w-full bg-white p-2 text-xl md:text-lg rounded-xl text-black' />
           <div className='flex flex-col gap-1'>
             <p className='text-xl font-semibold'>Category</p>
             {
               allCategory?.map((category, idx) => (
                 <div key={idx} className='flex gap-1'>
-                  <input type="checkbox" id={idx} />
+                  <input type="checkbox" className='accent-red-600' id={idx} />
                   <label htmlFor={idx} className='uppercase cursor-pointer'>{category}</label>
                 </div>
               ))
@@ -66,7 +66,7 @@ const FilterMenu = () => {
             <p className='text-xl font-semibold'>Price Range</p>
             <div>
               <p>Price Range: $0 - $5000</p>
-              <input type="range" className='w-full' />
+              <input type="range" className='w-full accent-red-600' />
             </div>
           </div>
           <button className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase'>Reset Filters</button>
