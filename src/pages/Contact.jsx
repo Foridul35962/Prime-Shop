@@ -25,7 +25,7 @@ const Contact = () => {
             </div>
             <div>
               <label htmlFor="mail">Email Address</label>
-              <input className="bg-white text-black px-4 py-2 rounded-xl" type="text" id='mail' placeholder='john@example.com' />
+              <input className="bg-white text-black px-4 py-2 rounded-xl" type="email" id='mail' placeholder='john@example.com' />
             </div>
             <div>
               <label htmlFor="message">Your Message</label>

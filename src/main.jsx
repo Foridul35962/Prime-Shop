@@ -11,6 +11,7 @@ import Error from './pages/Error.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { Provider } from 'react-redux'
 import APIStore from './store/index.js'
+import ProductDetails from './pages/ProductDetails.jsx'
 
 
 // Import your Publishable Key
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/product',
-        element: <Product />
+        element: <Product />,
+      },
+      {
+        path: '/product/:idx',
+        element: <ProductDetails />
       },
       {
         path: '/about',

@@ -23,7 +23,6 @@ const Product = () => {
             <FilterMenu />
             <ProductItem />
           </div>
-
       }
     </>
   )
