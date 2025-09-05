@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import Loading from './Loading';
+import { useNavigate } from 'react-router-dom';
 
 const Carousel = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const Carousel = () => {
     autoplaySpeed: 3000,     // Time between slides (3s)
     pauseOnHover: true       // Stop autoplay on hover
   };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -48,7 +51,7 @@ const Carousel = () => {
                     <div className="text-gray-300">
                       {product.description.length > 150 ? product.description.slice(0, 150) + "..." : product.description}
                     </div>
-                    <button className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
+                    <button onClick={()=>navigate(`/product/${idx}`,{state:product})} className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
                       Shop Now
                     </button>
                   </div>

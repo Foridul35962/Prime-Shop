@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import Navbar from './components/Navbar'
 import { Outlet } from 'react-router-dom'
 import Footer from './components/Footer'
+import ScrollTop from './components/ScrollTop'
 
 const App = () => {
   //Dynamic Height Detection
@@ -24,13 +25,16 @@ const App = () => {
   }, [])
 
   return (
-    <div className='overflow-hidden'>
-      <Navbar navbarRef={navbarRef} />
-      <div style={{ marginTop: `${height}px` }}>
-        <Outlet />
+    <>
+      <ScrollTop />
+      <div className='overflow-hidden'>
+        <Navbar navbarRef={navbarRef} />
+        <div style={{ marginTop: `${height}px` }}>
+          <Outlet />
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   )
 }
 
