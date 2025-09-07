@@ -41,10 +41,11 @@ const Product = () => {
         // unselect hobe
         setCategoryElement((prev) => prev.filter((cat) => cat !== value));
       }
-
+      setPages(1)
     },
     handleBrand: (e) => {
       setBrand(e.target.value)
+      setPages(1)
     },
     pageHandler:(e)=>{
       setPages(e)
