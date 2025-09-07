@@ -45,6 +45,9 @@ const Product = () => {
     },
     handleBrand: (e) => {
       setBrand(e.target.value)
+    },
+    pageHandler:(e)=>{
+      setPages(e)
     }
   }
 
