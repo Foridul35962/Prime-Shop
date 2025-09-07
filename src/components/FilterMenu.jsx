@@ -31,11 +31,11 @@ const FilterMenu = ({ filterData }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleResetButton = ()=>{
+  const handleResetButton = () => {
     filterData.setSearchElement('');
     filterData.setCategoryElement(['All']);
     filterData.setBrand('All');
-    filterData.setPriceRange([0,5000]);
+    filterData.setPriceRange([0, 5000]);
   }
 
 
@@ -47,7 +47,11 @@ const FilterMenu = ({ filterData }) => {
       </div>
       {showFilter &&
         <div className='flex flex-col gap-3'>
-          <input type="text" placeholder='Search...' value={filterData.searchElement} onChange={(e) => filterData.setSearchElement(e.target.value)} className='w-full bg-white p-2 text-xl md:text-lg rounded-xl text-black' />
+          <input type="text"
+            placeholder='Search...'
+            value={filterData.searchElement}
+            onChange={(e) => filterData.setSearchElement(e.target.value)}
+            className='w-full bg-white p-2 text-xl md:text-lg rounded-xl text-black' />
           <div className='flex flex-col gap-1'>
             <p className='text-xl font-semibold'>Category</p>
             {
@@ -86,7 +90,11 @@ const FilterMenu = ({ filterData }) => {
                 onChange={(e) => filterData.setPriceRange([filterData.priceRange[0], Number(e.target.value)])} />
             </div>
           </div>
-          <button onClick={handleResetButton} className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase'>Reset Filters</button>
+          <button
+            onClick={handleResetButton}
+            className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase'>
+            Reset Filters
+          </button>
         </div>
       }
     </div>

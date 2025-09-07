@@ -18,6 +18,7 @@ const Product = () => {
   const [categoryElement, setCategoryElement] = useState(['All']);
   const [brand, setBrand] = useState('All')
   const [priceRange, setPriceRange] = useState([0, 5000])
+  const [pages, setPages] = useState(1);
   const filterData = {
     searchElement,
     setSearchElement,
@@ -27,6 +28,8 @@ const Product = () => {
     setBrand,
     priceRange,
     setPriceRange,
+    pages,
+    setPages,
     handleCategory: (e) => {
       const value = e.target.value;
       if (e.target.checked) {

@@ -38,18 +38,18 @@ const Carousel = () => {
           <Slider {...settings}>
             {data?.slice(0, 7)?.map((product, idx) => (
               <div key={idx} className="!flex justify-center sm:h-dvh">
-                <div className="flex flex-col sm:flex-row container mx-auto items-center gap-6 p-4 rounded-lg w-full">
-                  <div className="flex flex-col gap-5 w-full sm:w-3/5">
+                <div className="flex flex-col sm:flex-row container mx-auto items-center gap-6 sm:justify-between p-4 rounded-lg w-full">
+                  <div className="flex flex-col gap-5 w-full sm:w-1/2">
                     <h1 className="text-red-700 text-sm font-bold">
                       Powering Your World with the Best in Electronics.
                     </h1>
 
-                    <div className="text-2xl lg:text-5xl text-white font-bold uppercase">
-                      {product.title.length > 50 ? product.title.slice(0, 50) + "..." : product.title}
+                    <div className="text-2xl lg:text-5xl text-white font-bold uppercase line-clamp-2">
+                      {product.title}
                     </div>
 
-                    <div className="text-gray-300">
-                      {product.description.length > 150 ? product.description.slice(0, 150) + "..." : product.description}
+                    <div className="text-gray-300 line-clamp-3">
+                      {product.description}
                     </div>
                     <button onClick={()=>navigate(`/product/${idx}`,{state:product})} className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
                       Shop Now
@@ -57,7 +57,7 @@ const Carousel = () => {
                   </div>
 
                   <div className="w-full sm:w-2/5">
-                    <img className="rounded-full hover:scale-105 transition-all shadow-2xl shadow-red-400" src={product.image} alt="image" />
+                    <img className="rounded-full hover:scale-105 transition-all shadow-2xl shadow-red-400 aspect-square" src={product.image} alt="image" />
                   </div>
                 </div>
               </div>

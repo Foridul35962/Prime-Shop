@@ -5,7 +5,8 @@ import axios from "axios";
 export const fetchCarouselAPI = createAsyncThunk(
   "CarouselAPI/fetchData",
   async () => {
-    const response = await axios.get("https://fakestoreapi.in/api/products?limit=150");
+    const response = await axios.get("https://fakestoreapi.com/products");  
+    // const response = await axios.get("https://fakestoreapi.in/api/products?limit=150");  
     return response.data;
   }
 );
@@ -27,7 +28,8 @@ const CarouselAPI = createSlice({
       .addCase(fetchCarouselAPI.fulfilled, (state, action) => {
         state.loading = false;
         state.CarouselData = action.payload;
-        state.data = action.payload?.products || [];
+        // state.data = action.payload?.products || [];
+        state.data = action.payload || [];
       })
       .addCase(fetchCarouselAPI.rejected, (state, action) => {
         state.loading = false;

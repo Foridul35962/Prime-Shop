@@ -31,8 +31,8 @@ const Features = () => {
     <div className='bg-gray-200 dark:bg-gray-800 dark:text-white py-10 md:py-0 md:pb-13 md:px-5 lg:px-0'>
         <div className='flex items-center flex-col gap-10 md:flex-row md:justify-evenly w-full'>
         {
-            allFeatures.map((feature)=>(
-                <div className='flex items-center gap-5'>
+            allFeatures.map((feature,idx)=>(
+                <div key={idx} className='flex items-center gap-5'>
                     <feature.icon className='text-3xl'/>
                     <div>
                         <p className='text-lg font-semibold'>{feature.text}</p>
