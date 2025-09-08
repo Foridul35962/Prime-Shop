@@ -37,7 +37,7 @@ const ProductDetails = () => {
           <div>
             <p className='cursor-pointer text-xl font-semibold'><span onClick={() => navigate('/')}>Home</span> / <span onClick={() => navigate('/product')}>Products</span> / {product.title}</p>
           </div>
-          <div className='flex items-center flex-col md:justify-between gap-5 md:flex-row'>
+          <div className='flex items-center flex-col md:justify-between gap-5 md:flex-row bg-gray-300 dark:bg-gray-900 shadow-2xl shadow-black rounded-xl px-5 py-7 mb-5'>
             <div className='flex justify-center'>
               <img className='size-60 md:size-full aspect-square' src={product.image} alt="image" />
             </div>

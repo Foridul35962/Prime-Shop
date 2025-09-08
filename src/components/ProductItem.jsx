@@ -9,7 +9,7 @@ const ProductItem = ({ filterData }) => {
   const { data } = useSelector((state) => state.CarouselAPI)
   const navigate = useNavigate();
   const goDetails = (idx, product) => {
-    navigate(`/products/${idx}`, { state: product });
+    navigate(`/product/${idx}`, { state: product });
   }
 
   const filteredAllData = data?.filter((item) =>
