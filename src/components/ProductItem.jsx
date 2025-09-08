@@ -10,7 +10,7 @@ const ProductItem = ({ filterData }) => {
   const { data } = useSelector((state) => state.CarouselAPI)
   const navigate = useNavigate();
   const goDetails = (idx, product) => {
-    navigate(`/product/${idx}`, { state: product });
+    navigate(`/product/${idx}`);
   }
 
   const filteredAllData = data?.filter((item) =>
@@ -36,7 +36,7 @@ const ProductItem = ({ filterData }) => {
             {
               filteredAllData?.slice(filterData.pages * 8 - 8, filterData.pages * 8).map((product, idx) => (
                 <div key={idx} className='bg-white w-full dark:bg-gray-900 shadow-lg shadow-black/50 rounded-xl p-3 cursor-pointer hover:scale-105 transform transition-all duration-200 flex flex-col gap-2'>
-                  <div onClick={() => goDetails(idx, product)} className="flex flex-col gap-2">
+                  <div onClick={() => goDetails(product.id)} className="flex flex-col gap-2">
                     <img className='rounded-2xl w-full bg-white dark:bg-gray-800 aspect-square' src={product.image} alt="" />
                     <p className='line-clamp-2 font-semibold'>{product.title}</p>
                     <p className='font-semibold'>${product.price}</p>

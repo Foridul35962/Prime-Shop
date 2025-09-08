@@ -15,12 +15,12 @@ const ProductDetails = () => {
     const getProduct = async () => {
       try {
         let id = location.pathname.split("/").pop()
-        id = 1 + Number(id)
         const responce = await axios.get(`https://fakestoreapi.com/products/${id}`)
         setProduct(responce.data)
         setLoading(false)
       } catch (error) {
         console.log(error);
+        setLoading(false)
       }
     }
     getProduct();
