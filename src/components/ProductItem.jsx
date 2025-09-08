@@ -9,7 +9,7 @@ const ProductItem = ({ filterData }) => {
   const { data } = useSelector((state) => state.CarouselAPI)
   const navigate = useNavigate();
   const goDetails = (idx, product) => {
-    navigate(`/product/${idx}`, { state: product });
+    navigate(`/products/${idx}`, { state: product });
   }
 
   const filteredAllData = data?.filter((item) =>
@@ -32,7 +32,7 @@ const ProductItem = ({ filterData }) => {
                   <img className='rounded-2xl w-full bg-white dark:bg-gray-800 aspect-square' src={product.image} alt="" />
                   <p className='line-clamp-2 font-semibold'>{product.title}</p>
                   <p className='font-semibold'>${product.price}</p>
-                  <button className='flex items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl p-2 cursor-pointer transition duration-300 text-center'><AiOutlineShoppingCart className='text-xl' />Add to Card</button>
+                  <button className='flex items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl p-2 cursor-pointer transition duration-300 text-center'><AiOutlineShoppingCart className='text-xl' />Add to Cart</button>
                 </div>
               ))
             }
