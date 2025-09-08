@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { useLocation, useNavigate } from 'react-router-dom'
 import Loading from '../components/Loading';
+import { useDispatch } from 'react-redux';
+import { AddCartAction } from '../store/AddCart';
 
 const ProductDetails = () => {
   const location = useLocation()
@@ -30,6 +32,13 @@ const ProductDetails = () => {
   }
   const navigate = useNavigate()
 
+
+  //adding cart
+  const dispatch = useDispatch()
+  const handleAddingCart = (product)=>{
+    dispatch(AddCartAction.cartAdding(product))
+  }
+
   return (
     <>
       {loading ? <Loading /> :
@@ -49,7 +58,7 @@ const ProductDetails = () => {
                 <p>Quantity:</p>
                 <input className='bg-white text-black rounded-xl px-2 py-1 w-15 text-lg' value={quantity} type="number" onChange={(e) => handleQuantity(e)} />
               </div>
-              <button className='flex items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl w-fit p-2 cursor-pointer transition duration-300 text-center mt-5'><AiOutlineShoppingCart className='text-xl' />Add to Cart</button>
+              <button onClick={()=>handleAddingCart(product)} className='flex items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl w-fit p-2 cursor-pointer transition duration-300 text-center mt-5'><AiOutlineShoppingCart className='text-xl' />Add to Cart</button>
             </div>
           </div>
         </div>
