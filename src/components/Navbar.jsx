@@ -11,10 +11,11 @@ import { HiMenuAlt3 } from 'react-icons/hi';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import axios from 'axios';
 import Menubar from './Menubar';
+import { useSelector } from 'react-redux';
 
 
 
-const Navbar = ({navbarRef}) => {
+const Navbar = ({ navbarRef }) => {
 
   const [location, setLocation] = useState('');
   const getLocation = async () => {
@@ -40,6 +41,9 @@ const Navbar = ({navbarRef}) => {
   const [mode, setMode] = useState(false);
 
   const [menuBar, setMenuBar] = useState(false);
+
+  let { cart } = useSelector((store) => store.cart)
+  cart = new Set(cart)
 
   return (
     <>
@@ -79,7 +83,12 @@ const Navbar = ({navbarRef}) => {
               <li><NavLink to='/product' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Product</NavLink></li>
               <li><NavLink to='/about' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>About</NavLink></li>
               <li><NavLink to='/contact' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>Contact</NavLink></li>
-              <li><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}><AiOutlineShoppingCart className='text-3xl' /></NavLink></li>
+              <li className='relative'><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>
+                <AiOutlineShoppingCart className='text-3xl' />
+                <div className='absolute -top-2 -right-2 bg-red-500 text-sm rounded-full px-1 text-white'>
+                  {cart.size}
+                </div>
+              </NavLink></li>
               <li className='text-xl cursor-pointer hover:scale-105'
                 onClick={() => {
                   setMode((mode) => {
@@ -104,7 +113,7 @@ const Navbar = ({navbarRef}) => {
           </div>
         </div>
       </div>
-      <Menubar menuBar={menuBar} mode={mode} setMode={setMode} setMenuBar={setMenuBar} location={location} setHandleLocation={setHandleLocation} handleLocation={handleLocation}/>
+      <Menubar menuBar={menuBar} mode={mode} setMode={setMode} setMenuBar={setMenuBar} location={location} setHandleLocation={setHandleLocation} handleLocation={handleLocation} />
     </>
   )
 }

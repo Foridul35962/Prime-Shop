@@ -51,7 +51,7 @@ const Carousel = () => {
                     <div className="text-gray-300 line-clamp-3">
                       {product.description}
                     </div>
-                    <button onClick={()=>navigate(`/product/${idx}`,{state:product})} className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
+                    <button onClick={()=>navigate(`/product/${idx+1}`)} className="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit">
                       Shop Now
                     </button>
                   </div>
