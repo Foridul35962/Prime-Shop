@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import { Outlet } from 'react-router-dom'
 import Footer from './components/Footer'
 import ScrollTop from './components/ScrollTop'
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   //Dynamic Height Detection
@@ -31,6 +32,7 @@ const App = () => {
         <Navbar navbarRef={navbarRef} />
         <div style={{ marginTop: `${height}px` }}>
           <Outlet />
+          <ToastContainer />
         </div>
         <Footer />
       </div>

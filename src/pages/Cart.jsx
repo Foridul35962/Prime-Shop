@@ -7,15 +7,27 @@ import { LiaHandLizard } from 'react-icons/lia';
 import useGeoLocation from '../store/useGeoLocation';
 import { useUser } from '@clerk/clerk-react';
 import { AddCartAction } from '../store/AddCart';
+import emptyCart from '../assets/empty-cart.png'
+import { warningToast } from '../store/notification';
 
 const Cart = () => {
   let { cart } = useSelector((store) => store.cart)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
   const dispatch = useDispatch()
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getLocation();
+  }
+
+  const handleDelivery = () => {
+    if (cart.length > 0) {
+      dispatch(AddCartAction.delivery())
+    }
+    else {
+      warningToast("Please add product in Cart")
+    }
+  }
   //set location in hooks
 
   const { location, getLocation } = useGeoLocation();
@@ -46,7 +58,7 @@ const Cart = () => {
     }
   }, [location]);
 
-  let totalPrice=0
+  let totalPrice = 0
 
 
   return (
@@ -65,15 +77,21 @@ const Cart = () => {
                   </div>
                   <div className='flex w-full md:w-1/2 items-center justify-between'>
                     <div className='bg-red-600 text-white text-lg items-center  flex gap-2.5 rounded-lg py-1 px-1.5'>
-                      <button className='cursor-pointer text-xl' onClick={()=>dispatch(AddCartAction.decrementQuantity(product.id))}>-</button>
+                      <button className='cursor-pointer text-xl' onClick={() => dispatch(AddCartAction.decrementQuantity(product.id))}>-</button>
                       {product.quantity}
-                      <button className='cursor-pointer' onClick={()=>dispatch(AddCartAction.incrementQuantity(product.id))}>+</button>
+                      <button className='cursor-pointer' onClick={() => dispatch(AddCartAction.incrementQuantity(product.id))}>+</button>
                     </div>
-                    <FaRegTrashAlt onClick={()=>dispatch(AddCartAction.cartDelete(product.id))} className='cursor-pointer' />
+                    <FaRegTrashAlt onClick={() => dispatch(AddCartAction.cartDelete(product.id))} className='cursor-pointer' />
                   </div>
                 </div>
               </div>
-            ))) : (<div className='text-2xl text-center'>You Don't Add Any Product</div>)
+            ))) :
+            (
+              <div className='w-full text-4xl text-red-600 text-center flex flex-col justify-center'>
+                <p className='font-semibold'>Oh, No! Your Cart is Empty</p>
+                <img className='mx-auto' src={emptyCart} alt="" />
+              </div>
+            )
         }
       </div>
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 bg-gray-300 dark:bg-gray-900 shadow-2xl shadow-black rounded-xl p-3 md:p-5 mb-5'>
@@ -108,7 +126,7 @@ const Cart = () => {
                 <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="number" id='PN' placeholder='Ex: +8801712345678' value={pn} onChange={(e) => setPn(e.target.value)} />
               </div>
             </div>
-            <button className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase' type='submit'>Submit</button>
+            <button className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase' type='submit'>Get Location</button>
           </form>
         </div>
         <div className='flex flex-col gap-3 bg-gray-400 rounded-xl dark:bg-gray-950 p-2 md:p-5'>
@@ -116,20 +134,20 @@ const Cart = () => {
           <div className='*:flex *:justify-between *:items-center'>
             <div>
               <p className='flex items-center gap-1'><LuNotebookText /> Items Total</p>
-              <p>{cart?.map((e)=>{totalPrice+=e.price})}{Number(totalPrice.toFixed(2))}</p>
+              <p>{cart.length > 0 && cart?.map((e) => { totalPrice += e.price })}{Number(totalPrice.toFixed(2))}</p>
             </div>
             <div>
               <p className='flex items-center gap-1'><MdDeliveryDining /> Delivery Charge</p>
-              <p><span className='text-red-600 line-through'>$25</span> Free</p>
+              {cart.length > 0 && <p><span className='text-red-600 line-through'>$25</span> Free</p>}
             </div>
             <div>
               <p className='flex items-center gap-1'><LiaHandLizard /> Handling Charge</p>
-              <p>$5</p>
+              {cart.length > 0 && <p>$5</p>}
             </div>
           </div>
           <div className='flex justify-between text-red-600 text-lg'>
             <p>Grand Total</p>
-            <p>${Number(totalPrice.toFixed(2))+5}</p>
+            {cart.length > 0 && <p>${Number(totalPrice.toFixed(2)) + 5}</p>}
           </div>
           <div className='flex flex-col gap-2'>
             <label htmlFor="promoCode">Apply Promo Code</label>
@@ -138,7 +156,7 @@ const Cart = () => {
               <button className='absolute top-0 right-0 flex justify-center items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-br-xl rounded-tr-xl p-2 cursor-pointer transition duration-300 text-center'>Apply</button>
             </div>
           </div>
-          <button className='flex justify-center items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl p-2 cursor-pointer transition duration-300 text-center mt-3'>Proceed To Checkout</button>
+          <button className='flex justify-center items-center gap-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl p-2 cursor-pointer transition duration-300 text-center mt-3' onClick={handleDelivery}>Proceed To Checkout</button>
         </div>
       </div>
     </div>
