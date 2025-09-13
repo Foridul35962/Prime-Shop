@@ -17,18 +17,15 @@ const FilterMenu = ({ filterData }) => {
 
   const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setShowFilter(true);   // md breakpoint = 768px+
-      } else {
-        setShowFilter(false);  // mobile
-      }
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const handleResize = (e) => {
+      setShowFilter(e.matches);
     };
 
-    handleResize(); // initial load e check
-    window.addEventListener('resize', handleResize);
+    handleResize(mediaQuery); // initial load e check
+    mediaQuery.addEventListener('change', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => mediaQuery.removeEventListener('change', handleResize);
   }, []);
 
   const handleResetButton = () => {
