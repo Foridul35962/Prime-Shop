@@ -1,17 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { LuNotebookText } from 'react-icons/lu';
 import { MdDeliveryDining } from 'react-icons/md';
 import { LiaHandLizard } from 'react-icons/lia';
+import useGeoLocation from '../store/useGeoLocation';
+import { useUser } from '@clerk/clerk-react';
 
 const Cart = () => {
   let { cart } = useSelector((store) => store.cart)
-  // cart= new Set(cart)
-  // console.log(cart);
+
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+
+  //set location in hooks
+
+  const { location, getLocation } = useGeoLocation();
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
+  //set delivery info
+  const { user, isSignedIn } = useUser()
+  const [name, setName] = useState(user?.fullName ?? "");
+  const [address, setAddress] = useState(location?.locality ?? "")
+  const [state, setState] = useState(location?.city ?? "")
+  const [pc, setPc] = useState('')
+  const [country, setCountry] = useState(location?.countryName ?? "")
+  const [pn, setPn] = useState('')
+
+  //call all element
+  useEffect(() => {
+    if (user) setName(user.fullName);
+  }, [user]);
+
+  useEffect(() => {
+    if (location) {
+      setAddress(location.locality || "");
+      setState(location.city || "");
+      setCountry(location.countryName || "");
+    }
+  }, [location]);
+
 
   return (
     <div className='w-dvw bg-gray-200 dark:text-white px-5 py-8 md:px-40 dark:bg-gray-800 flex flex-col gap-10'>
@@ -46,30 +78,30 @@ const Cart = () => {
             <h1 className='text-2xl font-bold my-2'>Delivery Info</h1>
             <div className='flex flex-col'>
               <label className='ml-2' htmlFor="name">Full Name</label>
-              <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='name' placeholder='Ex: Foridul' />
+              <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='name' placeholder='Ex: Foridul' value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className='flex flex-col'>
               <label className='ml-2' htmlFor="address">Address</label>
-              <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='address' placeholder='Ex: Sutrapur' />
+              <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='address' placeholder='Ex: Sutrapur' value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
               <div>
                 <label className='ml-2' htmlFor="state">State</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='state' placeholder='Ex: Old Dhaka' />
+                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='state' placeholder='Ex: Old Dhaka' value={state} onChange={(e) => setState(e.target.value)} />
               </div>
               <div>
                 <label className='ml-2' htmlFor="PC">Post Code</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='PC' placeholder='Ex: 1100' />
+                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='PC' placeholder='Ex: 1100' value={pc} onChange={(e) => setPc(e.target.value)} />
               </div>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
               <div>
                 <label className='ml-2' htmlFor="country">Country</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='country' placeholder='Ex: Bangladesh' />
+                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='country' placeholder='Ex: Bangladesh' value={country} onChange={(e) => setCountry(e.target.value)} />
               </div>
               <div>
                 <label className='ml-2' htmlFor="PN">Phone Number</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="number" id='PN' placeholder='Ex: +8801712345678' />
+                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="number" id='PN' placeholder='Ex: +8801712345678' value={pn} onChange={(e) => setPn(e.target.value)} />
               </div>
             </div>
             <button className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase' type='submit'>Submit</button>

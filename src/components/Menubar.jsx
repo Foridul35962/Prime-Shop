@@ -1,4 +1,4 @@
-import { UserButton, useUser } from '@clerk/clerk-react'
+import { SignInButton, UserButton, useUser } from '@clerk/clerk-react'
 import { FaUserCircle } from 'react-icons/fa';
 import { FaCaretDown, FaLocationDot } from 'react-icons/fa6';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
@@ -20,6 +20,11 @@ const Menubar = ({ menuBar, mode, setMode, setMenuBar, location, setHandleLocati
                     <h1>Premium User</h1>
                 </div>
             </div>
+            {
+                isLoaded ? '' : <div>
+                    <SignInButton className='bg-red-500 p-1 rounded-md text-white' />
+                </div>
+            }
             <div className='items-center gap-2 flex'>
                 <div>
                     <FaLocationDot className='text-red-600 text-xl' />
@@ -32,7 +37,8 @@ const Menubar = ({ menuBar, mode, setMode, setMenuBar, location, setHandleLocati
                     }
                     <FaCaretDown className='cursor-pointer' onClick={() => {
                         setHandleLocation(!handleLocation);
-                        setMenuBar(!menuBar)}} />
+                        setMenuBar(!menuBar)
+                    }} />
                 </div>
             </div>
             <div>
