@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { LuNotebookText } from 'react-icons/lu';
 import { MdDeliveryDining } from 'react-icons/md';
 import { LiaHandLizard } from 'react-icons/lia';
 import useGeoLocation from '../store/useGeoLocation';
 import { useUser } from '@clerk/clerk-react';
+import { AddCartAction } from '../store/AddCart';
 
 const Cart = () => {
   let { cart } = useSelector((store) => store.cart)
@@ -13,6 +14,7 @@ const Cart = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
   }
+  const dispatch = useDispatch()
 
   //set location in hooks
 
@@ -65,7 +67,7 @@ const Cart = () => {
                       1
                       <button className='cursor-pointer'>+</button>
                     </div>
-                    <FaRegTrashAlt className='cursor-pointer' />
+                    <FaRegTrashAlt onClick={()=>dispatch(AddCartAction.cartDelete(product.id))} className='cursor-pointer' />
                   </div>
                 </div>
               </div>

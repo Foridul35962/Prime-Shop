@@ -6,6 +6,11 @@ const AddCart = createSlice({
     reducers:{
         cartAdding:(state,action)=>{
             state.cart=[...state.cart,action.payload]
+        },
+        cartDelete:(state,action)=>{
+            state.cart = state.cart.filter((e)=>{
+                return e.id!==action.payload
+            })
         }
     }
 })
