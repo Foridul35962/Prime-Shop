@@ -100,30 +100,30 @@ const Cart = () => {
             <h1 className='text-2xl font-bold my-2'>Delivery Info</h1>
             <div className='flex flex-col'>
               <label className='ml-2' htmlFor="name">Full Name</label>
-              <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='name' placeholder='Ex: Foridul' value={name} onChange={(e) => setName(e.target.value)} />
+              <input required className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='name' placeholder='Ex: Foridul' value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className='flex flex-col'>
               <label className='ml-2' htmlFor="address">Address</label>
-              <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='address' placeholder='Ex: Sutrapur' value={address} onChange={(e) => setAddress(e.target.value)} />
+              <input required className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='address' placeholder='Ex: Sutrapur' value={address} onChange={(e) => setAddress(e.target.value)} />
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
               <div>
                 <label className='ml-2' htmlFor="state">State</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='state' placeholder='Ex: Old Dhaka' value={state} onChange={(e) => setState(e.target.value)} />
+                <input required className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='state' placeholder='Ex: Old Dhaka' value={state} onChange={(e) => setState(e.target.value)} />
               </div>
               <div>
                 <label className='ml-2' htmlFor="PC">Post Code</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='PC' placeholder='Ex: 1100' value={pc} onChange={(e) => setPc(e.target.value)} />
+                <input required className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='PC' placeholder='Ex: 1100' value={pc} onChange={(e) => setPc(e.target.value)} />
               </div>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-3'>
               <div>
                 <label className='ml-2' htmlFor="country">Country</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='country' placeholder='Ex: Bangladesh' value={country} onChange={(e) => setCountry(e.target.value)} />
+                <input required className='w-full bg-white text-black rounded-xl px-2 py-1' type="text" id='country' placeholder='Ex: Bangladesh' value={country} onChange={(e) => setCountry(e.target.value)} />
               </div>
               <div>
                 <label className='ml-2' htmlFor="PN">Phone Number</label>
-                <input className='w-full bg-white text-black rounded-xl px-2 py-1' type="number" id='PN' placeholder='Ex: +8801712345678' value={pn} onChange={(e) => setPn(e.target.value)} />
+                <input required className='w-full bg-white text-black rounded-xl px-2 py-1' type="number" id='PN' placeholder='Ex: +8801712345678' value={pn} onChange={(e) => setPn(e.target.value)} />
               </div>
             </div>
             <button className='bg-red-600 hover:bg-red-700 active:bg-red-800 text-white rounded-xl py-2 px-4 cursor-pointer transition duration-300 w-fit uppercase' type='submit'>Get Location</button>
