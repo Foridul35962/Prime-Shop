@@ -46,6 +46,8 @@ const Cart = () => {
     }
   }, [location]);
 
+  let totalPrice=0
+
 
   return (
     <div className='w-dvw bg-gray-200 dark:text-white px-5 py-8 md:px-40 dark:bg-gray-800 flex flex-col gap-10'>
@@ -63,9 +65,9 @@ const Cart = () => {
                   </div>
                   <div className='flex w-full md:w-1/2 items-center justify-between'>
                     <div className='bg-red-600 text-white text-lg items-center  flex gap-2.5 rounded-lg py-1 px-1.5'>
-                      <button className='cursor-pointer text-xl'>-</button>
-                      1
-                      <button className='cursor-pointer'>+</button>
+                      <button className='cursor-pointer text-xl' onClick={()=>dispatch(AddCartAction.decrementQuantity(product.id))}>-</button>
+                      {product.quantity}
+                      <button className='cursor-pointer' onClick={()=>dispatch(AddCartAction.incrementQuantity(product.id))}>+</button>
                     </div>
                     <FaRegTrashAlt onClick={()=>dispatch(AddCartAction.cartDelete(product.id))} className='cursor-pointer' />
                   </div>
@@ -114,7 +116,7 @@ const Cart = () => {
           <div className='*:flex *:justify-between *:items-center'>
             <div>
               <p className='flex items-center gap-1'><LuNotebookText /> Items Total</p>
-              <p>$57</p>
+              <p>{cart?.map((e)=>{totalPrice+=e.price})}{Number(totalPrice.toFixed(2))}</p>
             </div>
             <div>
               <p className='flex items-center gap-1'><MdDeliveryDining /> Delivery Charge</p>
@@ -127,7 +129,7 @@ const Cart = () => {
           </div>
           <div className='flex justify-between text-red-600 text-lg'>
             <p>Grand Total</p>
-            <p>$60</p>
+            <p>${Number(totalPrice.toFixed(2))+5}</p>
           </div>
           <div className='flex flex-col gap-2'>
             <label htmlFor="promoCode">Apply Promo Code</label>

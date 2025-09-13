@@ -43,8 +43,6 @@ const Navbar = ({ navbarRef }) => {
   const [menuBar, setMenuBar] = useState(false);
 
   let { cart } = useSelector((store) => store.cart)
-  cart = new Set(cart)
-
   return (
     <>
       <div ref={navbarRef} className='fixed top-0 w-full left-0 bg-white dark:bg-gray-700 dark:text-white z-10'>
@@ -86,7 +84,7 @@ const Navbar = ({ navbarRef }) => {
               <li className='relative'><NavLink to='/cart' className={({ isActive }) => isActive ? 'border-b-3 border-red-700' : 'transform transition-all duration-300 hover:text-xl'}>
                 <AiOutlineShoppingCart className='text-3xl' />
                 <div className='absolute -top-2 -right-2 bg-red-500 text-sm rounded-full px-1 text-white'>
-                  {cart.size}
+                  {cart.length}
                 </div>
               </NavLink></li>
               <li className='text-xl cursor-pointer hover:scale-105'
